@@ -36,23 +36,7 @@
                 $scope.paginationConf.itemsPerPage = resp.data.pageSize;
                 $scope.paginationConf.totalItems = resp.data.total;
             });
-       /*     ajaxApi({
-                scope: $scope,
-                ing: {text: ingTexts.loading},
-                type: 'post',
-                url: '/Json/ctiy.json',
-                data: {
-                    "pageNum": $scope.paginationConf.currentPage,
-                    "pageSize": 13,
-                    "classElementIds": $scope.classElementIds
-                },
-                success: function (resp) {
-
-
-                }
-            })*/
         }
-
 
     })
 </script>
