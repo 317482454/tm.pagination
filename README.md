@@ -12,11 +12,11 @@ $scope.so = function () {
 }  
 ```
 原因：解决了二次请求的问题，但是回归第一页需要重新赋值为1才行  
-currentPage:当前页面数,默认为1
-totalItems:总数
-itemsPerPage:显示数量
-onChange:事件
-pagesLength:分页大小数量,默认9
+* currentPage:当前页面数,默认为1
+* totalItems:总数
+* itemsPerPage:显示数量
+* onChange:事件
+* pagesLength:分页大小数量,默认9
 
 
 
