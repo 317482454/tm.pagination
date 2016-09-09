@@ -2,9 +2,58 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+    <title>angular分页</title>
+    <link href="css/bootstrap.css"  rel="stylesheet" >
 
+</head>
+<body ng-app="myApp" ng-controller="testController">
+<table class="table table-bordered">
+    <tr>
+        <td>地址</td>
+    </tr>
+    <tr ng-repeat="x in travelList.list">
+        <td>{{x.text}}</td>
+    </tr>
+</table>
+    <tm-pagination conf="paginationConf"></tm-pagination>
 </body>
+<script src="js/angular.min.js"></script>
+<script src="js/tm.pagination.js"></script>
+<script>
+    angular.module('myApp', ['tm.pagination']).controller('testController', function ($scope, $timeout, $http) {
+        $scope.paginationConf = {
+            onChange: function () {
+                $scope.poat();
+            }
+        };
+        $scope.poat = function () {
+            $http({
+                url:'data/ctiy.json',
+                method:'GET'
+            }).success(function(resp){
+                $scope.travelList = resp.data;
+                $scope.paginationConf.currentPage = resp.data.pageNum;
+                $scope.paginationConf.itemsPerPage = resp.data.pageSize;
+                $scope.paginationConf.totalItems = resp.data.total;
+            });
+       /*     ajaxApi({
+                scope: $scope,
+                ing: {text: ingTexts.loading},
+                type: 'post',
+                url: '/Json/ctiy.json',
+                data: {
+                    "pageNum": $scope.paginationConf.currentPage,
+                    "pageSize": 13,
+                    "classElementIds": $scope.classElementIds
+                },
+                success: function (resp) {
+
+
+                }
+            })*/
+        }
+
+
+    })
+</script>
 </html>
