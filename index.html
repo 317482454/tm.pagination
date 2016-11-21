@@ -23,23 +23,19 @@
  根据条件查询
  需要重新定义一个方法</p>
 
-<div class="highlight highlight-source-js"><pre>   <span class="pl-smi">$scope</span>.<span class="pl-en">so</span> <span class="pl-k">=</span> <span class="pl-k">function</span> () {
-       <span class="pl-k">if</span> (<span class="pl-smi">$scope</span>.<span class="pl-smi">paginationConf</span>.<span class="pl-smi">currentPage</span> <span class="pl-k">!=</span> <span class="pl-c1">1</span>) {
-           <span class="pl-smi">$scope</span>.<span class="pl-smi">paginationConf</span>.<span class="pl-smi">currentPage</span> <span class="pl-k">=</span> <span class="pl-c1">1</span>; 
-       }<span class="pl-k">else</span>{
-           <span class="pl-smi">$scope</span>.<span class="pl-en">poat</span>();
-      }
-    }</pre></div>
+<div class="highlight highlight-source-js"><pre><span class="pl-smi">$scope</span>.<span class="pl-smi">paginationConf</span> <span class="pl-k">=</span> {
+            currentPage<span class="pl-k">:</span> <span class="pl-smi">$location</span>.<span class="pl-c1">search</span>().<span class="pl-smi">currentPage</span> <span class="pl-k">?</span> <span class="pl-smi">$location</span>.<span class="pl-c1">search</span>().<span class="pl-smi">currentPage</span> <span class="pl-k">:</span> <span class="pl-c1">1</span>,
+            totalItems<span class="pl-k">:</span> <span class="pl-c1">8000</span>,
+            itemsPerPage<span class="pl-k">:</span> <span class="pl-c1">15</span>,
+            pagesLength<span class="pl-k">:</span> <span class="pl-c1">15</span>,
+            perPageOptions<span class="pl-k">:</span> [<span class="pl-c1">10</span>, <span class="pl-c1">20</span>, <span class="pl-c1">30</span>, <span class="pl-c1">40</span>, <span class="pl-c1">50</span>],
+            <span class="pl-en">onChange</span><span class="pl-k">:</span> <span class="pl-k">function</span>(){
+                <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-smi">$scope</span>.<span class="pl-smi">paginationConf</span>.<span class="pl-smi">currentPage</span>);
+                <span class="pl-smi">$location</span>.<span class="pl-c1">search</span>(<span class="pl-s"><span class="pl-pds">'</span>currentPage<span class="pl-pds">'</span></span>, <span class="pl-smi">$scope</span>.<span class="pl-smi">paginationConf</span>.<span class="pl-smi">currentPage</span>);
+            }
+        };</pre></div>
 
-<p>原因：解决了二次请求的问题，但是回归第一页需要重新赋值为1才行</p>
-
-<ul>
-<li>currentPage:当前页面数,默认为1</li>
-<li>totalItems:总数</li>
-<li>itemsPerPage:显示数量</li>
-<li>onChange:事件</li>
-<li>pagesLength:分页大小数量,默认9</li>
-</ul>
+<p>11.21 添加href属性，保存页码，并读取页码 </p>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/317482454/tm.pagination">Tm.pagination</a> is maintained by <a href="https://github.com/317482454">317482454</a>.</span>

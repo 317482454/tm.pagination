@@ -1,6 +1,6 @@
 {
   "name": "Tm.pagination",
   "tagline": "angular分页插件tm.pagination（解决触发二次请求的问题）",
-  "body": " angular分页插件tm.pagination（解决触发二次请求的问题）\r\n 根据条件查询\r\n 需要重新定义一个方法\r\n```javascript\r\n   $scope.so = function () {\r\n       if ($scope.paginationConf.currentPage != 1) {\r\n           $scope.paginationConf.currentPage = 1; \r\n       }else{\r\n           $scope.poat();\r\n      }\r\n    }\r\n```\r\n原因：解决了二次请求的问题，但是回归第一页需要重新赋值为1才行\r\n* currentPage:当前页面数,默认为1\r\n* totalItems:总数\r\n* itemsPerPage:显示数量\r\n* onChange:事件\r\n* pagesLength:分页大小数量,默认9",
+  "body": " angular分页插件tm.pagination（解决触发二次请求的问题）\r\n 根据条件查询\r\n 需要重新定义一个方法\r\n```javascript\r\n$scope.paginationConf = {\r\n            currentPage: $location.search().currentPage ? $location.search().currentPage : 1,\r\n            totalItems: 8000,\r\n            itemsPerPage: 15,\r\n            pagesLength: 15,\r\n            perPageOptions: [10, 20, 30, 40, 50],\r\n            onChange: function(){\r\n                console.log($scope.paginationConf.currentPage);\r\n                $location.search('currentPage', $scope.paginationConf.currentPage);\r\n            }\r\n        };\r\n```\r\n11.21 添加href属性，保存页码，并读取页码 ",
   "note": "Don't delete this file! It's used internally to help with page regeneration."
 }
