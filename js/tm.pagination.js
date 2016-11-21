@@ -142,39 +142,43 @@ angular.module('tm.pagination', []).directive('tmPagination', [function () {
             scope.prevPage = function () {
                 if (conf.currentPage > 1) {
                     conf.currentPage -= 1;
+                    getPagination();
+                    if (conf.onChange) {
+                        conf.onChange();
+                    }
                 }
-                getPagination();
-                if (conf.onChange) {
-                    conf.onChange();
-                }
+
             };
             scope.prevIndex = function () {
                 if (scope.conf.currentPage > 1) {
                     scope.conf.currentPage = 1;
+                    getPagination();
+                    if (conf.onChange) {
+                        conf.onChange();
+                    }
                 }
-                getPagination();
-                if (conf.onChange) {
-                    conf.onChange();
-                }
+
             };
             // nextPage
             scope.nextPage = function () {
                 if (conf.currentPage < conf.numberOfPages) {
                     conf.currentPage += 1;
+                    getPagination();
+                    if (conf.onChange) {
+                        conf.onChange();
+                    }
                 }
-                getPagination();
-                if (conf.onChange) {
-                    conf.onChange();
-                }
+
             };
             scope.nextBack = function () {
                 if (scope.conf.currentPage < scope.conf.numberOfPages) {
                     scope.conf.currentPage = scope.conf.numberOfPages ;
+                    getPagination();
+                    if (conf.onChange) {
+                        conf.onChange();
+                    }
                 }
-                getPagination();
-                if (conf.onChange) {
-                    conf.onChange();
-                }
+
             };
             // 变更当前页
             scope.changeCurrentPage = function (item) {
@@ -238,11 +242,11 @@ angular.module('tm.pagination', []).directive('tmPagination', [function () {
 
             scope.$watch('conf.totalItems', function (value, oldValue) {
                 // 在无值或值相等的时候，去执行onChange事件
-                    if (!value || value == oldValue) {
-                        if (conf.onChange) {
-                            conf.onChange();
-                        }
+                if (!value || value == oldValue) {
+                    if (conf.onChange) {
+                        conf.onChange();
                     }
+                }
                 getPagination();
             })
 
