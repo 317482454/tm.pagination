@@ -3,20 +3,20 @@ angular分页插件tm.pagination（解决触发二次请求的问题）<br/>
 根据条件查询<br/>
 需要重新定义一个方法<br/>  
 ```javascript
-$scope.so = function () {
-            if ($scope.paginationConf.currentPage != 1) 
-                $scope.paginationConf.currentPage = 1; 
-            }else{
-                $scope.poat();
+$scope.paginationConf = {
+            currentPage: $location.search().currentPage ? $location.search().currentPage : 1,
+            totalItems: 8000,
+            itemsPerPage: 15,
+            pagesLength: 15,
+            perPageOptions: [10, 20, 30, 40, 50],
+            onChange: function(){
+                console.log($scope.paginationConf.currentPage);
+                $location.search('currentPage', $scope.paginationConf.currentPage);
             }
-}  
+        };
 ```
-原因：解决了二次请求的问题，但是回归第一页需要重新赋值为1才行  
-* currentPage:当前页面数,默认为1
-* totalItems:总数
-* itemsPerPage:显示数量
-* onChange:事件
-* pagesLength:分页大小数量,默认9
+11.21
+添加href属性，保存页码，并读取页码
 
 
 
