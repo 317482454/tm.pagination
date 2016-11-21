@@ -17,6 +17,6 @@ $scope.paginationConf = {
 ```
 11.21
 添加href属性，保存页码，并读取页码
-![image](https://github.com/317482454/tm.pagination/1.jpg)
+![image](https://github.com/317482454/tm.pagination/blob/master/1.jpg)
 
 
